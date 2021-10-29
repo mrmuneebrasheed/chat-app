@@ -38,7 +38,6 @@ const autoScroll = () => {
     }
 };
 socket.on("message", ({ username, text, createdAt }) => {
-    console.log(text);
     const html = Mustache.render(messageTemplate, {
         username,
         text,
@@ -56,9 +55,6 @@ socket.on("locationMessage", ({ username, url, createdAt }) => {
     messages.insertAdjacentHTML("beforeend", html);
     autoScroll();
 });
-socket.on("newConnection", ({ text, createdAt }) => {
-    console.log(text);
-});
 socket.on("disconnection", ({ text, createdAt }) => {
     console.log(text);
     const html = Mustache.render(messageTemplate, {
@@ -68,8 +64,6 @@ socket.on("disconnection", ({ text, createdAt }) => {
     messages.insertAdjacentHTML("beforeend", html);
 });
 socket.on("roomData", ({ room, users }) => {
-    console.log(room);
-    console.log(users);
     const html = Mustache.render(sidebarTemplate, {
         room,
         users,
